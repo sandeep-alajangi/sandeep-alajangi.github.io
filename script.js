@@ -37,13 +37,11 @@ const commands = {
 > [AI CORE]: TensorFlow (tf.data internals), JAX, CUDA/Triton`
 };
 
-async function typeWriter(text, element, speed = 10) {
+function typeWriter(text, element) {
     element.innerHTML += '<br>';
     let tempDiv = document.createElement('div');
+    tempDiv.innerHTML = text;
     element.appendChild(tempDiv);
-    
-    // Quick hack to allow HTML rendering without typing out tags
-    tempDiv.innerHTML = text; 
 }
 
 async function runBootSequence() {
@@ -53,7 +51,8 @@ async function runBootSequence() {
         div.className = 'system-msg';
         div.innerText = msg;
         output.appendChild(div);
-        await new Promise(r => setTimeout(r, 400));
+        // 200ms delay for that retro loading feel
+        await new Promise(r => setTimeout(r, 200));
     }
     input.disabled = false;
     input.focus();
@@ -62,17 +61,21 @@ async function runBootSequence() {
 input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
         const cmd = input.value.trim().toLowerCase();
+        
+        // Prevent empty commands
+        if (!cmd) return;
+        
         input.value = '';
         
         // Echo command
-        output.innerHTML += \`<br><span class="prompt">guest@sandeep.ai:~$</span> \${cmd}\`;
+        output.innerHTML += `<br><span class="prompt">guest@sandeep.ai:~$</span> <span class="highlight">${cmd}</span>`;
 
         if (cmd === 'clear') {
             output.innerHTML = '';
             return;
         }
 
-        const response = commands[cmd] || \`Command not found: \${cmd}. Type 'help' for available commands.\`;
+        const response = commands[cmd] || `Command not found: ${cmd}. Type 'help' for available commands.`;
         typeWriter(response, output);
         
         // Auto-scroll to bottom
