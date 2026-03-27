@@ -1,22 +1,32 @@
 baseURL = "https://sandeep-alajangi.github.io/"
 languageCode = "en-us"
-title = "Sandeep Alajangi | Terminal"
-theme = "github.com/panr/hugo-theme-terminal/v4"
+title = "Sandeep Alajangi | System Architecture"
+theme = "github.com/adityatelange/hugo-PaperMod"
 
 [module]
   [[module.imports]]
-    path = "github.com/panr/hugo-theme-terminal/v4"
+    path = "github.com/adityatelange/hugo-PaperMod"
 
 [params]
-  # Terminal theme settings
-  themeColor = "green" # Options: orange, blue, red, green, pink
-  showMenuItems = 2
-  showLogo = true
-  logoText = "sandeep@systems:~$"
+  env = "production"
+  defaultTheme = "dark" # Enforces the techie dark mode
+  description = "Staff AI Infrastructure Engineer"
+  author = "Sandeep Alajangi"
+  ShowReadingTime = true
+  ShowCodeCopyButtons = true # Essential for code snippets
+  ShowToc = true
   
-  # Techie aesthetic
-  fullWidthTheme = false
-  centerTheme = true
+[params.profileMode]
+  enabled = true
+  title = "Sandeep Alajangi"
+  subtitle = "Staff Systems & AI Infrastructure Engineer @ Google. Architecting exabyte-scale ML infrastructure and ultra-low-latency C++ systems."
+  
+  [[params.profileMode.buttons]]
+    name = "GitHub"
+    url = "https://github.com/sandeep-alajangi"
+  [[params.profileMode.buttons]]
+    name = "LinkedIn"
+    url = "https://linkedin.com/in/your-linkedin"
 
 [menu]
   [[menu.main]]
